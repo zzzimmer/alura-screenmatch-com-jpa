@@ -15,3 +15,30 @@ Projeto desenvolvido no segundo curso da formação Avançando com Java da Alura
 - Conhecer vários tipos de banco de dados e utilizar o PostgreSQL;
 - Trabalhar com vários tipos de consultas ao banco de dados;
 - Aprofundar na interface JPARepository
+
+
+## Aula 01 - Transformar API em WEB
+- Foi necessário transformar a API, de uma CommandLineApp para WEB através da 
+manipulação do POM, adicionando a dependencia Starter-Web, a qual fornece
+um conjunto de recursos para prog web como o TomCat. 
+- Adicionar os Controllers à aplicação
+
+## Aula 02 - Fornecendo dados ao Front
+- Package by Layer, ou pacotes por camadas.
+O Package by Layer é uma abordagem que diz que você deve dividir seu código com base em suas responsabilidades 
+funcionais. Isso pode incluir coisas como 'model', 'view', 'controller', e 'repository'. 
+Cada camada tem uma responsabilidade específica. Por exemplo, a camada 'view' manipula a interface do usuário, enquanto
+a camada 'controller' lidará com a lógica de negócio.
+
+- Os conceitos centrair foram DTO's e CORS. Sendo este, responsável por configurar o contato entre back-end e requisições
+- front-end, e aquele, responsável por enviar representações de objetos de forma mais otimizada para o front-end, 
+- convertendo objetos em classes record, apropriadas para JSON. Ademais, também vimos live preview e configurações.
+
+## Aula 03 - Mapeando rotas
+
+- Introdução ao pacote Service - Desacoplar repository do controlador
+- O controlador 1) recebe a requisição 2) delega para alguém 3) recebe a resposta. Ademais, lida com as coisas que 
+acontecem no navegador, senão, está com responsabilidades demais
+- A classe service, através da notação @Service, ganha comportamentos referentes
+a implementação de regras de negócio. Ademais, também é entendida como classe de acesso a banco, por isso, se injeta
+um repository nessa classe.
