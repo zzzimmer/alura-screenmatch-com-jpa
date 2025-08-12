@@ -42,3 +42,16 @@ acontecem no navegador, senão, está com responsabilidades demais
 - A classe service, através da notação @Service, ganha comportamentos referentes
 a implementação de regras de negócio. Ademais, também é entendida como classe de acesso a banco, por isso, se injeta
 um repository nessa classe.
+- Deixar o código mais limpo e organizado. Vimos que a única responsabilidade de um controlador é tratar da comunicação 
+e das rotas da API. Assim, ele não deve conter regras de negócio. E para fazer essa divisão, criamos uma classe de 
+serviços, a SerieService.
+
+- Utilizar boas práticas de extração de métodos Aplicamos princípios da orientação a objetos, extraindo métodos que eram
+comuns no código, facilitando a manutenção.
+  Criar uma url fixa para o Controller. Usamos o @RequestMapping para que todas as urls mapeadas pelo controlador de séries 
+tenham como prefixo o “/series”.
+
+- Retornar os dados de uma única série. Para buscar uma série, precisamos que seu id seja passado como parâmetro. 
+Conhecemos o @PathVariable, que nos auxilia nesse objetivo.
+
+## Aula 04 - 
