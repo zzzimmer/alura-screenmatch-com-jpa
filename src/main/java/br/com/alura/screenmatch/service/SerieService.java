@@ -3,16 +3,18 @@ package br.com.alura.screenmatch.service;
 
 import br.com.alura.screenmatch.dto.EpisodioDTO;
 import br.com.alura.screenmatch.dto.SerieDTO;
+import br.com.alura.screenmatch.model.ECategoria;
+import br.com.alura.screenmatch.model.Episodio;
 import br.com.alura.screenmatch.model.Serie;
 import br.com.alura.screenmatch.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -66,11 +68,33 @@ public class SerieService {
         return null; // segundo o curso, o front end acerta isso aqui
     }
 
-//    public List<EpisodioDTO> buscaTemporadaEspecifica ()
+
+    public List<EpisodioDTO> buscaTemporadasPorNumero(Long id, Long temp_id) {
+        return serieRepository.obterEpisodiosPorTemporada(id, temp_id)
+                .stream().map(e -> new EpisodioDTO(e.getTemporada(), e.getTitulo()
+                , e.getNumeroEpisodio())).collect(Collectors.toList());
 
 
+    }
 
-//    public List<SerieDTO> obterTop10EpisodiosPorSerie() {
-//        return serieRepository.top10EpisodiosPorSerie();
-//    }
+    public List<SerieDTO> obterSeriesPorCategoria(String categoriaNome) {
+        ECategoria eCategoria = ECategoria.fromString(categoriaNome);
+        return conversor(serieRepository.findSerieByGenero(eCategoria));
+
+//        return serieRepository.obterSeriesPorCategoria(categoriaNome).stream().map(s -> new SerieDTO(s.getId(), s.getTitulo(),
+//                s.getTotalTemporadas(), s.getAvaliacao(), s.getGenero(), s.getAtores(),
+//                s.getPoster(), s.getSinopse())).collect(Collectors.toList());
+    }
+
+    public List<EpisodioDTO> obterTop5PorSerie(Long id) {
+            return serieRepository.findSerieById(id)
+                    .map(s -> s.getEpisodios().stream()
+                            .filter(e -> e.getAvaliacao() != null)
+                            .sorted(Comparator.comparing(Episodio::getAvaliacao).reversed())
+                            .limit(5)
+                            .map(e -> new EpisodioDTO(e.getTemporada(), e.getTitulo(), e.getNumeroEpisodio()))
+                            .toList()
+                    )
+                    .orElse(Collections.emptyList());
+    }
 }

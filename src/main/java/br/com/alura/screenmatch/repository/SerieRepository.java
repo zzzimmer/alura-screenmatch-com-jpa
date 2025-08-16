@@ -1,5 +1,7 @@
 package br.com.alura.screenmatch.repository;
 
+import br.com.alura.screenmatch.dto.SerieDTO;
+import br.com.alura.screenmatch.model.ECategoria;
 import br.com.alura.screenmatch.model.Episodio;
 import br.com.alura.screenmatch.model.Serie;
 import org.springframework.data.domain.Pageable;
@@ -31,4 +33,12 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
     Optional<Serie> findById(Long id);
 
 
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s.id = :id AND e.temporada = :temp_id ")
+    List<Episodio> obterEpisodiosPorTemporada(Long id, Long temp_id);
+
+
+
+    List<Serie> findSerieByGenero(ECategoria genero);
 }
+//    @Query("SELECT s FROM Serie s WHERE s.genero = :categoriaNome")
+//    List<Serie> obterSeriesPorCategoria(String categoriaNome);

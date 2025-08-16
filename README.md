@@ -55,3 +55,22 @@ tenham como prefixo o “/series”.
 Conhecemos o @PathVariable, que nos auxilia nesse objetivo.
 
 ## Aula 04 - 
+
+Trabalhar de forma colaborativa. Vimos que é importante sempre testar exaustivamente o código, principalmente com 
+registros diferentes. Somente assim temos a confirmação de que nossas buscas estão corretas.
+
+Passar parâmetros na url. Usamos novamente a anotação @PathVariable e vimos que ela pode ser utilizada tanto com 
+números quanto com strings. Para que ela funcione, basta que passemos o nome do parâmetro entre chaves na url do 
+@GetMapping, exatamente como ele está declarado na função.
+
+Comparar streams e buscas no banco de dados. Aprendemos que podemos utilizar tanto streams quanto consultas do banco de
+dados, não precisamos nos restringir ao uso exclusivo de um deles. Basta que analisemos a complexidade das buscas,
+filtros e operações que faremos.
+
+Desenvolver uma aplicação de forma incremental. Ao trabalhar na integração do front com o back-end, identificamos, 
+ao longo do tempo, os requisitos necessários para tudo funcionar em conjunto. O trabalho incremental é muito comum no 
+ambiente de desenvolvimento.
+
+## Aula 05 -
+
+
